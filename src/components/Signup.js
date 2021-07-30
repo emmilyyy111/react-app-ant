@@ -4,16 +4,16 @@ import 'firebase/auth'
 import { Modal, Form, Input, Button } from 'antd'
 import { firebaseConfig } from '../fbconfig'
 
-function Login ({ setUser }){
+function Signup({ setUser }){
     const history = useHistory()
     const handleCancel = () => {
         history.push('/') 
     }
-    const handleLogin = ({ email, password }) => {
+    const handleSignup = ({ email, password }) => {
         if (!firebase.apps.length){
             firebase.initializeApp(firebaseConfig)
         }
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(results => {
                 setUser(results.user)
                 history.push('/')
@@ -22,8 +22,8 @@ function Login ({ setUser }){
     }
 
     return(
-        <Modal title="Login" visible={true} onCancel={handleCancel} footer={null}>
-            <Form name="Login" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={handleLogin}> 
+        <Modal title="Sign up" visible={true} onCancel={handleCancel} footer={null}>
+            <Form name="Signup" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={handleSignup}> 
                 <Form.Item label="Email" name="email" 
                 rules={[ { required: true, message: 'Please enter a valid email' }, { type: 'email', message: 'Please enter a valid email'} ]}>
                     <Input />
@@ -32,11 +32,11 @@ function Login ({ setUser }){
                     <Input.Password />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">Login</Button>
+                    <Button type="primary" htmlType="submit">Sign up</Button>
                 </Form.Item>
             </Form>
         </Modal>
     )
 }
 
-export default Login
+export default Signup

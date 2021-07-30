@@ -13,7 +13,7 @@ function QuoteList(){
             
                 <Col lg={6} md={8} sm={12} xs={24}>
                     <Card hoverable>
-                        <h3>Be Comfortable with the uncomfortable.</h3>
+                        <h3>It is what it is.</h3>
                         <p>&mdash; Emily Morgenbesser</p>
                     </Card>
                 </Col>
